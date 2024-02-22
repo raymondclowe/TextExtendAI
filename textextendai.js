@@ -80,23 +80,26 @@ function nextParaAI() {
     // Concatenate the title and content
     const articleSoFar = title + content;
 
-    // console.log(articleSoFar)
 
-    // const instruction = ```Here is the beginning of a blog post. 
+    // * Original instruction:
+    // 
+    // const instruction = `Here is the beginning of a blog post. 
     // You should write the next one single paragraph, do not repeat the existing paragraph but continue 
     // on with the continuation. Do not include line breaks or headers, just a paragraph of prose that 
     // continues this blog post in the same style. It could either be an expansion or sensible next 
     // topic based on what has been written already, or it could be a transition into a new related topic.
-
+    // 
     // Here is the blog post so far, you will write the next paragraph.
+    // 
+    // `
 
-    // ```
-
-    const instructionText = `Continue the following blog post intro with a paragraph that:
+    // * Optimized by ChatGPT4 prompt, may be too brief
+    const instructionText = `Continue the following blog post with a paragraph that:
 
     1. Matches the original style and tone.
 
-    2. Either delves deeper into the topic or introduces a related one, ensuring it flows seamlessly from the intro.
+    2. Either delves deeper into the topic or introduces a related one, ensuring it flows seamlessly from the existing writing.
+
     3. Engages the reader by adding new insights or perspectives without repeating provided information.
 
     Ensure your writing is coherent and captivates the target audience, enriching the blog post.
@@ -114,7 +117,7 @@ function nextParaAI() {
 
     // Define the data payload for the API request
     const data = {
-        model: 'mistral-small',
+        model: 'mistral-tiny',
         messages: [
             {
                 role: 'user',
@@ -130,13 +133,6 @@ function nextParaAI() {
         random_seed: null
     };
 
-    // // Set the prompt in the data payload
-    // data.messages[0].content = prompt;
-
-    // console.log(data);
-
-
-    // debugger;
     // Make the API request
     fetch(apiUrl, {
         method: 'POST',
@@ -167,21 +163,6 @@ function nextParaAI() {
             console.error('An error occurred:', error);
         });
 };
-
-// // set a hotkey of Ctrl Shift E that will call the nextParaAI() function to extend the work.
-// wp.keybindapi.registerShortcut(
-//     'nextParaAI', 
-//     {
-//       category: 'Next Paragraph',
-//       description: 'Generate a paragraph of text using AI',
-//       keyCombination: {
-//         modifier: ['ctrl', 'shift'],
-//         character: 'e'
-//       }
-//     },
-//     nextParaAI
-//   );
-
 
 
 document.addEventListener('keydown', (event) => {
