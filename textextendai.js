@@ -43,6 +43,9 @@ function nextParaAI() {
     }
 
     // Now apiToken is either from localStorage or was just entered
+    // However it is now too late for this call so it is going to fail so we
+    // might as well just exit now and not try to do the fetch
+    
 
 
 
