@@ -120,7 +120,7 @@ function nextParaAI() {
             }
         ],
         temperature: 0.6,
-        max_tokens: 100,
+        max_tokens: 1024,
         top_p: 0.9,
         // top_k: 50,
         stream: false,
