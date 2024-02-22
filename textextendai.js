@@ -1,3 +1,5 @@
+// Version: 1.1 dev
+
 function nextParaAI() {
     console.log("Start NextParaAI")
     // Define the API endpoint URL

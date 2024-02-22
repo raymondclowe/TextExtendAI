@@ -2,7 +2,7 @@
 /**
  * Plugin Name: TextExtendAI
  * Description: Extend text in the block editor using AI
- * Version: 1.0
+ * Version: 1.1 dev
  * Author: Raymond Lowe
  * License: GPL2
  * URL: https://github.com/raymondclowe/TextExtendAI
