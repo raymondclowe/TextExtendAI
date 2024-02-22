@@ -1,4 +1,4 @@
-// Version: 1.1rc
+// Version: 1.1
 
 function nextParaAI() {
     console.log("Start NextParaAI")
