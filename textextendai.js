@@ -151,16 +151,36 @@ function nextParaAI() {
             // Extract the generated text from the API response
             const generatedText = responseData.choices[0].message.content.trim();
 
-            // Create a new paragraph block
-            const newParagraphBlock = wp.blocks.createBlock('core/paragraph', {
-                content: generatedText
+            // Split the generated text into paragraphs
+            const paragraphBlocks = generatedText.split('\n\n');
+
+            const newBlocks = paragraphBlocks.map(paragraph => {
+                let blockType;
+                let level = null;
+                if (paragraph.startsWith('#')) {
+                    blockType = 'core/heading';
+                    const levelMatch = paragraph.match(/^#{1,6}/);
+                    
+                    if (levelMatch) {
+                        level = levelMatch[0].length;
+                    } 
+
+                    // remove the hash(es) and space from the start of the paragraph string
+                    paragraph = paragraph.replace(levelMatch[0], '').trim();
+                        
+                } else {
+                    blockType = 'core/paragraph';
+                }
+
+                
+                return wp.blocks.createBlock(blockType, {
+                    content: paragraph,
+                    ...(level ? { level } : {})
+                });
             });
 
+            wp.data.dispatch('core/block-editor').insertBlocks(newBlocks, selectedBlockIndex + 1);
 
-
-            // Add the new block to the editor
-            wp.data.dispatch('core/block-editor').insertBlocks([newParagraphBlock], selectedBlockIndex + 1);
-            // wp.data.dispatch('core/block-editor').insertBlocksAfter(newParagraphBlock, selectedBlock.clientId);
         })
         .catch(error => {
             console.error('An error occurred:', error);
