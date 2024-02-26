@@ -17,6 +17,10 @@ Select the zip file you just downloaded
 
 Click Install Now
 
+## Upgrade
+
+Repeat the installation instructions.  WP will notice you are upgrading and will prompt you to confirm
+
 Activate the Plugin
 
 # Set UP
