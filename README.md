@@ -9,8 +9,8 @@ Required:
 
 # Installation
 
-1. Download this repository as a ZIP file.
-2. On your WP blog to go Admin / Plugins / Add New Plugin and choose UPload Plugin
+1. Download this repository as a [ZIP file](https://github.com/raymondclowe/TextExtendAI/archive/refs/heads/main.zip).
+2. On your WP blog to go Admin / Plugins / Add New Plugin and choose Upload Plugin
 3. Select the zip file you just downloaded
 4. Click Install Now
 5. Activate the Plugin
