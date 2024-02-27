@@ -9,19 +9,16 @@ Required:
 
 # Installation
 
-Download this repository as a ZIP file.
-
-On your WP blog to go Admin / Plugins / Add New Plugin and choose UPload Plugin
-
-Select the zip file you just downloaded
-
-Click Install Now
+1. Download this repository as a ZIP file.
+2. On your WP blog to go Admin / Plugins / Add New Plugin and choose UPload Plugin
+3. Select the zip file you just downloaded
+4. Click Install Now
+5. Activate the Plugin
 
 ## Upgrade
 
 Repeat the installation instructions.  WP will notice you are upgrading and will prompt you to confirm
 
-Activate the Plugin
 
 # Set UP
 
@@ -42,4 +39,6 @@ Any subsequent times you press Ctrl-Shift-E then the text you have written so fa
 It takes about 2 seconds.
 
 
+# Changelog
 
+1.3 - Handle multiple paragraphs and or headers being returned by the API
