@@ -22,9 +22,9 @@ Repeat the installation instructions.  WP will notice you are upgrading and will
 
 # Set UP
 
-The first time you try to use the plugin it wil ask for an API key, that will be one from Mistral platform.
+The first time you try to use the plugin it wil ask for an API key, that will be one from Mistral platform. [Signup here](https://auth.mistral.ai/self-service/registration/browser).
 
-It costs money, but not that much so make sure you set a suitable budget (like $1 / month) and you will be fine.
+It costs money, but not that much so make sure you set a suitable [monthly usage limit](https://console.mistral.ai/billing/#:~:text=next%20month%20begins.-,Usage%20limit%20(%E2%82%AC)%20*,-Update%20limit) (like €1 / month) and you will be fine.
 
 # Usage
 
