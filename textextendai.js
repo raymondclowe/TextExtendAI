@@ -1,4 +1,4 @@
-// Version: 1.3
+// Version: 1.4
 
 function nextParaAI() {
     console.log("Start NextParaAI")
@@ -154,32 +154,59 @@ function nextParaAI() {
             // Split the generated text into paragraphs
             const paragraphBlocks = generatedText.split('\n\n');
 
-            const newBlocks = paragraphBlocks.map(paragraph => {
-                let blockType;
-                let level = null;
-                if (paragraph.startsWith('#')) {
-                    blockType = 'core/heading';
-                    const levelMatch = paragraph.match(/^#{1,6}/);
-                    
-                    if (levelMatch) {
-                        level = levelMatch[0].length;
-                    } 
+            const newBlocks = []; 
 
-                    // remove the hash(es) and space from the start of the paragraph string
-                    paragraph = paragraph.replace(levelMatch[0], '').trim();
-                        
-                } else {
-                    blockType = 'core/paragraph';
+            let currentListItems = [];
+
+            paragraphBlocks.forEach(paragraph => {
+
+            if (paragraph.startsWith('#')) {
+
+                // Heading block
+                let level = paragraph.trim().split('').filter(c => c === '#').length;
+                paragraph = paragraph.replace(new RegExp(`^#{1,${level}}`, 'g'), '').trim();
+
+                newBlocks.push(wp.blocks.createBlock('core/heading', {
+                content: paragraph,
+                level: level
+                }));
+
+            } else if (paragraph.startsWith('1.') || paragraph.startsWith('2.') || paragraph.startsWith('3.')) {
+
+                // List item
+                currentListItems.push(paragraph.replace(/^\d+\.\s/, ''));
+
+            } else {
+
+                if (currentListItems.length > 0) {
+                // Flush existing list items
+                newBlocks.push(wp.blocks.createBlock('core/list', {
+                    values: currentListItems.map(item => wp.blocks.createBlock('core/list-item', {
+                    content: item
+                    }))  
+                }));
+                currentListItems = [];
                 }
 
-                
-                return wp.blocks.createBlock(blockType, {
-                    content: paragraph,
-                    ...(level ? { level } : {})
-                });
+                // Regular paragraph
+                newBlocks.push(wp.blocks.createBlock('core/paragraph', {
+                content: paragraph
+                }));
+
+            }
+
             });
 
-            wp.data.dispatch('core/block-editor').insertBlocks(newBlocks, selectedBlockIndex + 1);
+            if (currentListItems.length > 0) {
+            // Flush any remaining list items
+            newBlocks.push(wp.blocks.createBlock('core/list', {
+                values: currentListItems.map(item => wp.blocks.createBlock('core/list-item', {
+                content: item
+                }))
+            }));
+            }
+
+
 
         })
         .catch(error => {
