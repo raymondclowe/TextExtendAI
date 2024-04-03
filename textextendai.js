@@ -1,52 +1,36 @@
-// Version: 1.3
+// Version: 2.0
+
+// get the API key after a 10 second delay
+let myApiKey;
+let AIDelay = 5;
+let aimodel = 'open-mistral-7b'; // default cheapest model
+
+
+
+setTimeout(() => {
+    fetch('/index.php?rest_route=/textextendai/v1/apikey', {
+        headers: new Headers({
+            'X-WP-Nonce': textextendai.api_nonce
+        })
+    }).then(res => res.json()
+    ).then(data => {
+        console.log(data);
+        myApiKey = data.apikey;        
+        aimodel = data.aimodel;
+        console.log('API key is ' + myApiKey);        
+        console.log('AI Model is '+ aimodel);
+    });
+}, 10000);
+
+
 
 function nextParaAI() {
     console.log("Start NextParaAI")
     // Define the API endpoint URL
     const apiUrl = 'https://api.mistral.ai/v1/chat/completions';
 
-    // Check if API token is in localStorage
-    let MistralApiToken = localStorage.getItem('mistralAPIKey');
-
-    if (!MistralApiToken) {
-
-        // Token not found, show popup to get it from user
-
-        let popup = document.createElement('div');
-        popup.style.position = 'fixed';
-        popup.style.top = '50%';
-        popup.style.left = '50%';
-        popup.style.transform = 'translate(-50%, -50%)';
-
-        let form = document.createElement('form');
-        let input = document.createElement('input');
-        input.type = 'text';
-        input.placeholder = 'Enter Mistral API token';
-
-        let submitBtn = document.createElement('button');
-        submitBtn.textContent = 'Submit';
-
-        form.appendChild(input);
-        form.appendChild(submitBtn);
-
-        popup.appendChild(form);
-
-        document.body.appendChild(popup);
-
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            MistralApiToken = input.value;
-            localStorage.setItem('mistralAPIKey', MistralApiToken);
-            popup.remove();
-        });
-
-    }
-
-    // Now apiToken is either from localStorage or was just entered
-    // However it is now too late for this call so it is going to fail so we
-    // might as well just exit now and not try to do the fetch
     
-
+    let MistralApiToken = myApiKey;
 
 
 
@@ -120,7 +104,7 @@ function nextParaAI() {
 
     // Define the data payload for the API request
     const data = {
-        model: 'mistral-tiny',
+        model: aimodel,
         messages: [
             {
                 role: 'user',
