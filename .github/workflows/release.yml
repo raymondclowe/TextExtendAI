@@ -31,9 +31,5 @@ jobs:
         with:
           files: './TextExtendAI.zip'
         env:
-<<<<<<< HEAD
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
-=======
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
->>>>>>> fee8286d157bbd13123f3f95a928e1137aa5942e
