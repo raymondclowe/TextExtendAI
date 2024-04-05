@@ -1,0 +1,34 @@
+name: Package on Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Install zip
+        run: sudo apt-get install zip
+
+      - name: Create zip with content
+        run: |
+          zip -r TextExtendAI.zip . -x "*.git*" -x "TextExtendAI.zip" -x ".github/**/*"
+      
+      - name: Move zip to folder
+        run: |
+          mkdir -p TextExtendAI
+          mv TextExtendAI.zip TextExtendAI/
+
+      - name: Create final zip
+        run: |
+          zip -r TextExtendAI.zip TextExtendAI
+      
+      - name: Release with assets
+        uses: softprops/action-gh-release@v1
+        with:
+          files: './TextExtendAI.zip'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
