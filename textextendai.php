@@ -2,7 +2,7 @@
 /**
  * Plugin Name: TextExtendAI
  * Description: Extend text in the block editor using AI
- * Version: 2.0
+ * Version: 2.0.1
  * Author: Raymond Lowe
  * License: GPL2
  * URL: https://github.com/raymondclowe/TextExtendAI
@@ -56,7 +56,7 @@ function textextendai_admin_init()
   add_settings_field(
     'apikey',
     'API Key',
-    'apikey_callback',
+    'textextendai_apikey_callback',
     'textextendai',
     'textextendai_main'
   );
@@ -64,7 +64,7 @@ function textextendai_admin_init()
   add_settings_field(
     'aimodel',
     'AI Model Name',
-    'aimodel_callback',
+    'textextendai_aimodel_callback',
     'textextendai', 
     'textextendai_main'
   );
@@ -74,13 +74,13 @@ function textextendai_section_text()
 {
   echo '<p>Configure TextExtendAI settings</p>';
 }
-function apikey_callback()
+function textextendai_apikey_callback()
 {
   $value = get_option('apikey');
   echo '<input type="text" id="apikey" name="apikey" value="' . esc_attr($value) . '" size="40" />';
 }
 
-function aimodel_callback() {
+function textextendai_aimodel_callback() {
   $value = get_option('aimodel');
   $options = array(
     'open-mistral-7b' => 'Mistral 7B ($0.25/1M tokens Input, $0.25/1M tokens Output)',  

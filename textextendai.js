@@ -1,4 +1,4 @@
-// Version: 2.0
+// Version: 2.0.1
 
 // get the API key after a 10 second delay
 let myApiKey;
