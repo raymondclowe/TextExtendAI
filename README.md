@@ -9,7 +9,7 @@ Required:
 
 # Installation
 
-1. Download the latest release version a [ZIP file](https://github.com/raymondclowe/TextExtendAI/releases/download/latest/TextExtendAI.zip).
+1. Download the latest release version a [ZIP file](https://github.com/raymondclowe/TextExtendAI/releases/latest/download/TextExtendAI.zip).
 2. On your WP blog to go Admin / Plugins / Add New Plugin and choose Upload Plugin
 3. Select the zip file you just downloaded
 4. Click Install Now
