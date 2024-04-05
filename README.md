@@ -9,7 +9,7 @@ Required:
 
 # Installation
 
-1. Download this repository as a [ZIP file](https://github.com/raymondclowe/TextExtendAI/archive/refs/heads/main.zip).
+1. Download the latest release version a [ZIP file](https://github.com/raymondclowe/TextExtendAI/releases/download/latest/TextExtendAI.zip).
 2. On your WP blog to go Admin / Plugins / Add New Plugin and choose Upload Plugin
 3. Select the zip file you just downloaded
 4. Click Install Now
@@ -22,7 +22,9 @@ Repeat the installation instructions.  WP will notice you are upgrading and will
 
 # Set UP
 
-The first time you try to use the plugin it wil ask for an API key, that will be one from Mistral platform. [Signup here](https://auth.mistral.ai/self-service/registration/browser).
+Go to the Dashboard / Settings / TextExtendAI and enter your API key and choose your model.
+
+That will be one from Mistral platform. [Signup here](https://auth.mistral.ai/self-service/registration/browser).
 
 It costs money, but not that much so make sure you set a suitable [monthly usage limit](https://console.mistral.ai/billing/#:~:text=next%20month%20begins.-,Usage%20limit%20(%E2%82%AC)%20*,-Update%20limit) (like €1 / month) and you will be fine.
 
